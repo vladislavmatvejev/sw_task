@@ -1,0 +1,112 @@
+
+#header {
+  width: 100%;
+}
+.active a{
+  color: #f4ba44;
+}
+a.logo img{
+  padding: 15px;
+}
+.pageTitle{
+  font-size: 26px;
+  padding: 15px;
+  color: orange;
+}
+.active-tab, ul.tabs li:hover {
+  border-top-left-radius: .25em;
+  border-top-right-radius: .25em;
+  background: white;
+}
+#container {
+  background: #fbf2ea;
+  padding-bottom: 25px;
+}
+ul.tabs {
+  padding: 0;
+  margin: 0;
+}
+ul.tabs li {
+  float: left;
+  list-style: none;
+  padding: 10px;
+  height: 100%;
+}
+#header {
+  width: 100%;
+  background: white;
+  z-index: 1;
+}
+#overlay {
+  position: absolute;
+  display: none;
+  background: black;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  z-index: 9999;
+}
+ul.main-menu{
+  border-top: 1px solid lightgray;
+}
+ul.main-menu li:last-child{
+  border-left: 1px solid lightgray;
+}
+
+ul.main-menu li:hover{
+  border-top: 2px solid #f4ba44;
+  background: #fbf2ea;
+  fill: red;
+}
+
+#header:before, #footer:before {
+  background: -ms-linear-gradient(left,#fb661d 0,#f4ba44 100%);
+  background: linear-gradient(to right,#fb661d 0,#f4ba44 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb661d',endColorstr='#f4ba44',GradientType=1);
+  height: 5px;
+}
+#header:before, #header:after, #footer:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+#footer{
+  background: #ebe7e2;
+}
+#payment, #calculator, #home{
+  background: #ffffff;
+}
+
+form {
+  padding: 25px;
+}
+
+.errorMsg {
+  display: none;
+}
+
+ul.main-menu>li.active>a>svg path {
+  fill: orange;
+}
+.svgHover {
+  fill: orange;
+}
+
+.result {
+  border-left:1px solid lightgray;
+}
+
+.mnthly{
+  padding-top: calc(.5rem - 1px * 2);
+  padding-bottom: calc(.5rem - 1px * 2);
+  margin-bottom: 0;
+  font-size: 24px;
+  color: orange;
+}
+.currencyStyle {
+  font-size: 14px;
+  color: gray;
+}

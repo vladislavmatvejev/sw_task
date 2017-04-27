@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
+<script src="node_modules/jquery/dist/jquery.min.js" type="application/javascript"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+<body>
+    <div id="header">
+        <a class="logo" href="#">
+            <img src="assets/swedbank_logo.png" alt="logo">
+        </a>
+        <ul class="nav row main-menu">
+            <li class="col text-center">
+                <a href="#home" class="nav-link">
+                    <img class="svg menu-svg-link hidden-sm-down" src="assets/home.svg" alt="home"/><br>
+                    Home
+                </a>
+            </li>
+            <li class="col text-center">
+                <a href="#everyday_banking" class="nav-link">
+                    <img class="svg menu-svg-link hidden-sm-down" src="assets/wallet.svg" alt="wallet"/><br>
+                    Everyday banking
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="overlay"></div>
+    <div class="container-fluid" id="container">
+        <div class="row" id="main-content">
+        </div>
+    </div>
+    <div id="footer">
+        <h1>footer</h1>
+    </div>
+    <script>
+        $('ul.main-menu li').hover(function () {
+            $('#overlay').show();
+            $(this).children().children().find('path').addClass('svgHover');
+        },function () {
+            $('#overlay').hide();
+            $(this).children().children().find('path').removeClass('svgHover');
+        });
+        $('ul.main-menu').each(function () {
+            var $active, $links = $(this).find('a');
+            var $content = $('#main-content');
+            $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+            $($active).parent().addClass('active');
+
+            $content.load('views/'+$active[0].hash.substring(1)+'.html');
+
+            $(this).on('click', 'a', function (e) {
+                e.preventDefault();
+                $($active).parent().removeClass('active');
+                $content.load('views/'+this.hash.substring(1)+'.html');
+                $active = $(this);
+                $active.parent().addClass('active');
+            });
+        });
+
+        $('img.svg').each(function(){
+          var $img = jQuery(this);
+          var imgID = $img.attr('id');
+          var imgClass = $img.attr('class');
+          var imgURL = $img.attr('src');
+
+          $.get(imgURL, function(data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = $(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if(typeof imgID !== 'undefined') {
+              $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if(typeof imgClass !== 'undefined') {
+              $svg = $svg.attr('class', imgClass+' replaced-svg');
+            }
+            $($svg.find('path')).addClass('hidden-sm-down');
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+
+          }, 'xml');
+
+        });
+    </script>
+</body>
+</html>

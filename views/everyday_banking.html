@@ -1,0 +1,178 @@
+<div class="container">
+  <h1 class="pageTitle">EVERY DAY BANKING</h1>
+  <div class="row">
+    <ul class="tabs col" style="min-height: 50px;">
+      <li><a href='#payment'>Payment</a></li>
+      <li><a href='#calculator'>Calculator</a></li>
+    </ul>
+  </div>
+  <div class="row" id="payment">
+      <form class="col">
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label text-md-right" for="account">Account</label>
+          <div class="col-sm-12 col-md-6">
+            <select class="form-control" id="account">
+              <option>Account name 1</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label text-md-right" for="sv_payment">Saved Payments</label>
+          <div class="col-sm-12 col-md-6">
+            <select class="form-control" id="sv_payment">
+              <option>Select a saved payment</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label text-md-right" for="amount">Amount</label>
+          <div class="col-sm-12 col-md-4 form-group">
+            <input type="number" class="form-control has-danger" id="amount">
+            <span class="errorMsg text-danger">Amount accepts only numbers</span>
+          </div>
+          <div class="col-sm-12 col-md-2 form-group">
+            <select class="form-control">
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="NOK">NOK</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label text-md-right" for="desc">Description</label>
+          <div class="col-sm-12 col-md-6">
+            <input type="text" class="form-control" id="desc">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-md-9 col-12">
+            <button type="button" class="btn btn-primary col-sm-12 col-md-1 form-group" id="saveBtn">Save</button>
+            <button type="button" class="btn btn-danger col-sm-12 col-md-1 form-group" id="payBtn">Pay</button>
+          </div>
+        </div>
+      </form>
+  </div>
+
+  <div class="row" id='calculator'>
+    <form class="col">
+      <div class="form-group row">
+        <div class="col-8">
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label text-md-right">Loan size</label>
+            <div class="col-sm-12 col-md-6">
+              <input id="ex8" data-slider-id='ex1Slider' type="text" data-slider-min="32000" data-slider-max="320000" data-slider-step="1" data-slider-value="14"/>
+              <span id="ex6CurrentSliderValLabel"> <span id="ex6SliderVal">32000</span></span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label text-md-right" for="periodLoan">Period</label>
+            <div class="col-sm-12 col-md-6">
+              <select class="form-control calc-select" style="width: 100px;" id="periodLoan">
+                <option value="5">5 years</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label text-md-right" for="interestRate">Interest</label>
+            <div class="col-sm-12 col-md-6">
+              <select class="form-control calc-select" style="width: 75px;" id="interestRate">
+                <option value="4.5">4.5%</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 border-left-0 border-bottom-0">
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-8 col-form-label">Monthly payment</label>
+            <div class="col-sm-12 col-md-4 text-md-right">
+              <p class="mnthly">573.6 <span class="currencyStyle">EUR</span></p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-md-8 col-12">
+              <button type="button" class="btn btn-danger col-sm-12 col-md-3 form-group">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  var loanAmount = 32000;
+  $("#ex8").slider();
+  $("#ex8").on("slide", function(slideEvt) {
+    $("#ex6SliderVal").text(slideEvt.value);
+    loanAmount = slideEvt.value;
+    displayAmount(calcMonthly(loanAmount));
+  });
+  $('#saveBtn').on('click', function (e) {
+      var _this = this;
+      e.preventDefault();
+      if($.isNumeric($('#amount').val())) {
+        $('.errorMsg').hide();
+        $(_this).submit;
+      }else{
+        $('.errorMsg').show();
+      }
+  });
+  $('ul.tabs').each(function(){
+    var $active, $content, $links = $(this).find('a');
+    $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+    $active.parent().addClass('active-tab');
+    $content = $($active[0].hash);
+
+    // Hide the remaining content
+    $links.not($active).each(function () {
+      $(this.hash).hide();
+    });
+
+    // Bind the click event handler
+    $(this).on('click', 'a', function(e){
+      // Make the old tab inactive.
+      $active.parent().removeClass('active-tab');
+      $content.hide();
+
+      // Update the variables with the new link and content
+      $active = $(this);
+      $content = $(this.hash);
+
+      // Make the tab active.
+      $active.parent().addClass('active-tab');
+      $content.show();
+
+      // Prevent the anchor's default click action
+      e.preventDefault();
+    });
+  });
+  fillSelect("#periodLoan", 5, 30, 1, "years");
+  fillSelect("#interestRate", 2.5, 15, 0.5, "%");
+
+  function fillSelect(selectId, start, end, step, string) {
+    $(selectId).empty();
+    for (var i = start; i <= end; i+=step) {
+      var text = i+" "+string;
+      $(selectId).append($("<option></option>")
+                          .attr("value", i)
+                          .text(text)
+      );
+    }
+  }
+  $(".calc-select").on('change', function () {
+    displayAmount(calcMonthly(loanAmount));
+  });
+  displayAmount(calcMonthly(loanAmount));
+  function calcMonthly(amountLoan) {
+    var years = $("#periodLoan").val();
+    var months = years*12;
+    var interestYr = $("#interestRate").val();
+    var interestMnInPrc = interestYr/years;
+    var interestMn = interestMnInPrc/100;
+    var loan = amountLoan*((interestMn*Math.pow(1+interestMn,months))/(Math.pow(1+interestMn,months)-1));
+    var result = parseFloat(Math.round(loan*10)/10).toFixed(1);
+    return result;
+  }
+  function displayAmount(number) {
+    $('p.mnthly').text(number);
+  }
+</script>
