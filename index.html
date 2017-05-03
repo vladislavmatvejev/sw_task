@@ -13,20 +13,31 @@
 <script src="node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
 <body>
     <div id="header">
-        <a class="logo" href="#">
-            <img src="assets/swedbank_logo.png" alt="logo">
-        </a>
-        <ul class="nav row main-menu">
-            <li class="col text-center">
-                <a href="#home" class="nav-link">
-                    <img class="svg menu-svg-link hidden-sm-down" src="assets/home.svg" alt="home"/><br>
-                    Home
+
+        <div class="container">
+            <nav class="navbar navbar-toggleable-md navbar-light">
+                <div class="navbar-header">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand logo" href="#">
+                        <img src="assets/swedbank_logo.png" alt="logo">
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <ul class="nav row main-menu hidden-sm-down">
+            <li class="col-md-6 col-sm-12">
+                <a href="#home" class="nav-item nav-link text-md-center">
+                    <span class="hidden-sm-down"><img class="svg menu-svg-link" src="assets/home.svg" alt="home"/><br/></span>
+
+                    <span>Home</span>
                 </a>
             </li>
-            <li class="col text-center">
-                <a href="#everyday_banking" class="nav-link">
-                    <img class="svg menu-svg-link hidden-sm-down" src="assets/wallet.svg" alt="wallet"/><br>
-                    Everyday banking
+            <li class="col-md-6 col-sm-12">
+                <a href="#everyday_banking" class="nav-item nav-link text-md-center">
+                    <span class="hidden-sm-down"><img class="svg menu-svg-link" src="assets/wallet.svg" alt="wallet"/><br/></span>
+                    <span>Everyday banking</span>
                 </a>
             </li>
         </ul>
@@ -36,9 +47,108 @@
         <div class="row" id="main-content">
         </div>
     </div>
-    <div id="footer">
-        <h1>footer</h1>
-    </div>
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <h3>Contact</h3>
+                    <div class="tel_nr">
+                        6 310 310
+                    </div>
+                    <div class="email">
+                        <a href="mailto:info@swedbank.ee">info@swedbank.ee</a>
+                    </div>
+                    <div class="reqs">
+                        <p>SWEDBANK AS</p>
+                        <p>Liivalaia 8, 15040 Tallinn</p>
+                        <p>SWIFT kood/BIC: HABAEE2X</p>
+                        <p>Reg. number: 10060701</p>
+                    </div>
+                    <ul class="social">
+                        <li>
+                            <a href="#">
+                                <img src="assets/social%20media%20icons/facebook.svg"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="assets/social%20media%20icons/instagram.svg"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="assets/social%20media%20icons/youtube.svg"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="assets/social%20media%20icons/twitter.svg"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="assets/social%20media%20icons/skype.svg"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <h3>Quicklinks</h3>
+                    <ul class="links">
+                        <li>
+                            <a href="#">Calculators</a>
+                        </li>
+                        <li>
+                            <a href="#">Prices</a>
+                        </li>
+                        <li>
+                            <a href="#">Terms of service</a>
+                        </li>
+                        <li>
+                            <a href="#">Privacy and security</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <h3>Join Swedbank</h3>
+                    <ul class="links">
+                        <li>
+                            <a href="#">Client programs</a>
+                        </li>
+                        <li>
+                            <a href="#">Business customers</a>
+                        </li>
+                        <li>
+                            <a href="#">Jobs</a>
+                        </li>
+                        <li>
+                            <a href="#">Internships</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <h3>Tooted</h3>
+                    <ul class="links">
+                        <li>
+                            <a href="#">Everyday Banking</a>
+                        </li>
+                        <li>
+                            <a href="#">Loans</a>
+                        </li>
+                        <li>
+                            <a href="#">Insurance</a>
+                        </li>
+                        <li>
+                            <a href="#">Cards</a>
+                        </li>
+                        <li>
+                            <a href="#">Stocks</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script>
         $('ul.main-menu li').hover(function () {
             $('#overlay').show();
@@ -65,32 +175,38 @@
         });
 
         $('img.svg').each(function(){
-          var $img = jQuery(this);
-          var imgID = $img.attr('id');
-          var imgClass = $img.attr('class');
-          var imgURL = $img.attr('src');
+            var $img = $(this),
+                imgID = $img.attr('id'),
+                imgClass = $img.attr('class'),
+                imgSrc = $img.attr('src');
 
-          $.get(imgURL, function(data) {
-            // Get the SVG tag, ignore the rest
-            var $svg = $(data).find('svg');
+            $.get(imgSrc, function(data) {
+                // Get the SVG tag, ignore the rest
+                var $svg = $(data).find('svg');
 
-            // Add replaced image's ID to the new SVG
-            if(typeof imgID !== 'undefined') {
-              $svg = $svg.attr('id', imgID);
-            }
-            // Add replaced image's classes to the new SVG
-            if(typeof imgClass !== 'undefined') {
-              $svg = $svg.attr('class', imgClass+' replaced-svg');
-            }
-            $($svg.find('path')).addClass('hidden-sm-down');
-            // Remove any invalid XML tags as per http://validator.w3.org
-            $svg = $svg.removeAttr('xmlns:a');
+                // Add replaced image's ID to the new SVG
+                if(typeof imgID !== 'undefined') {
+                  $svg = $svg.attr('id', imgID);
+                }
+                // Add replaced image's classes to the new SVG
+                if(typeof imgClass !== 'undefined') {
+                  $svg = $svg.attr('class', imgClass+' replaced-svg');
+                }
+                // Remove any invalid XML tags as per http://validator.w3.org
+                $svg = $svg.removeAttr('xmlns:a');
 
-            // Replace image with new SVG
-            $img.replaceWith($svg);
-
+                // Replace image with new SVG
+                $img.replaceWith($svg);
           }, 'xml');
+        });
 
+        $('.navbar-toggler').on('click', function () {
+           var menuClass = $('.main-menu').attr('class');
+           if(menuClass.indexOf('hidden-sm-down') != -1){
+               $('.main-menu').removeClass('hidden-sm-down')
+           }else{
+               $('.main-menu').addClass('hidden-sm-down');
+           }
         });
     </script>
 </body>

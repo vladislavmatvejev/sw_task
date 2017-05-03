@@ -73,9 +73,7 @@ ul.main-menu li:hover{
   right: 0;
   z-index: 1;
 }
-#footer{
-  background: #ebe7e2;
-}
+
 #payment, #calculator, #home{
   background: #ffffff;
 }
@@ -88,7 +86,7 @@ form {
   display: none;
 }
 
-ul.main-menu>li.active>a>svg path {
+ul.main-menu>li.active>a>span>svg path {
   fill: orange;
 }
 .svgHover {
@@ -109,4 +107,180 @@ ul.main-menu>li.active>a>svg path {
 .currencyStyle {
   font-size: 14px;
   color: gray;
+}
+
+
+.navbar-header {
+  float: none;
+}
+
+.navbar-light .navbar-toggler{
+  border: none;
+  padding: 15px;
+}
+
+
+#footer{
+  background: #ebe7e2;
+  padding-bottom: 20px;
+}
+#footer div.reqs {
+  margin-bottom:20px;
+}
+#footer div.reqs p {
+  margin: 0;
+}
+
+#footer div.tel_nr {
+  font: 26px Arial, sans-serif;
+  font-weight: bold;
+  color: #f35b1c;
+}
+
+#footer div.email {
+  margin: 15px 0;
+}
+
+#footer div.col-md-3 {
+  margin-top: 30px;
+}
+
+h3 {
+  font: 20px Arial, sans-serif;
+}
+
+.social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.social li{
+  float: left;
+  margin: 0 10px 0 0;
+}
+.links{
+  list-style: none;
+  margin-left: -40px;
+}
+ul.links li{
+  margin-top: 10px;
+}
+
+ul.links a {
+  color: #512b2b;
+}
+
+.links a:before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #512b2b;
+  margin-right: 5px;
+}
+
+.circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: orange;
+  font:17px Arial,sans-serif;
+  font-weight: bold;
+  border-radius: 50%;
+  color: white;
+  margin: 30px;
+}
+.circle span {
+  position: absolute;
+  margin-top: 90px;
+  margin-left: 55px;
+}
+
+.circle:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  border-style: solid;
+  border-width: 50px 40px;
+  border-color: orange transparent transparent;
+  margin-left: -40px;
+  bottom: -65px;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.welcome-text {
+  margin: 30px 0;
+}
+.welcome-circle {
+  margin: 20px 0;
+}
+
+.welcome-panel {
+  background: #eceae7;
+  margin: 20px;
+}
+
+.bg-white {
+  background: white;
+}
+
+.panel-row {
+  background: white;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.panel-arrow {
+  position: relative;
+  font: 20px Arial, sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  background: orange;
+  color: white;
+}
+.panel-arrow.arrow-blue {
+  background: deepskyblue;
+}
+.panel-arrow.arrow-pink {
+  background: deeppink;
+}
+.panel-arrow:after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 20px;
+  border-style: solid;
+  border-width: 15px 10px;
+  border-color: orange transparent transparent;
+}
+
+.panel-arrow.arrow-blue:after {
+  border-color: deepskyblue transparent transparent;
+}
+.panel-arrow.arrow-pink:after {
+  border-color: deeppink transparent transparent;
+}
+
+.panel-content {
+  padding: 20px;
+  min-height:170px;
+}
+
+.panel-list li:before {
+  content: "";
+  position: absolute;
+  background: deeppink;
+  border-radius: 0 12px 12px 0;
+  -moz-border-radius: 0 12px 12px 0;
+  -webkit-border-radius: 0 12px 12px 0;
+  width: 9px;
+  height: 15px;
+  left: 75px;
+  margin-top:5px;
 }
